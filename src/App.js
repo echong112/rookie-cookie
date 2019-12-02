@@ -14,7 +14,9 @@ const App = () => {
     <Wrapper>
       <NavBar />
       <h1>Welcome to RookieCookie!</h1>
-      {classes.map(klass => <ClassCard content={klass}/>)}
+      <CardsWrapper>
+        {classes.map((klass, i) => <ClassCard key={i}content={klass}/>)}
+      </CardsWrapper>
     </Wrapper>
   )
 }
@@ -41,7 +43,7 @@ const processImageKey = (content) => {
 
 const ClassCard = ({content}) => (
   <ClassCardWrapper>
-    <img height="50%" width="100%"
+    <img width="100%"
       src={processImageKey(content)}
       alt=''
     />
@@ -57,9 +59,19 @@ const Wrapper = styled.div `
   text-align: center;
 `
 
+const CardsWrapper = styled.div `
+  margin-top: 45px;
+  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+`
+
 const ClassCardWrapper = styled.div`
+  height: 380px;
   width: 175px;
   border-radius: 5px;
   border: solid 1px black;
   overflow: hidden;
+  margin-bottom: 15px;
 `
