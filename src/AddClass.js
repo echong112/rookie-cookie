@@ -45,6 +45,7 @@ const AddClass = ({content, onSubmit}) => {
 
   return (
     <NewClassForm onSubmit={handleSubmit}>
+      <h1>Add a new Class</h1>
       <FormWrapper>
         <Formlabel>Title:</Formlabel>
         <FormFieldWrapper
@@ -116,15 +117,18 @@ const AddClass = ({content, onSubmit}) => {
 export default AddClass
 
 const NewClassForm = styled.form`
+  position: fixed;
   width: 100%;
   top: 0;
-  max-width: 991px;
-  height: 100%;
+  left: 0;
+  height: 100vh;
   z-index: 99999;
   background: white;
 `
 
 const FormWrapper = styled.div`
+  max-width: 991px;
+  margin: auto;
   display: flex;
   flex-wrap: wrap;
   justify-content: stretch;
