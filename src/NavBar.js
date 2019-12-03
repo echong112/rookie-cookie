@@ -24,6 +24,7 @@ const Header = styled.header`
   right: 0;
   height: 25px;
   box-shadow: 0 0 5px 0 gray;
+  z-index: 99999;
 `
 const HeaderMenu = styled.div`
   margin-top: 0px;
