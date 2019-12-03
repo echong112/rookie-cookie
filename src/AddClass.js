@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components'
 import Unsplash from 'unsplash-js';
+import ImageGrid from './ImageGrid';
 
 const AddClass = ({onSubmit, onCloseModal}) => {
   // eslint-disable-next-line
@@ -88,16 +89,10 @@ const AddClass = ({onSubmit, onCloseModal}) => {
           onChange={e => featuredImageSearch(e.target.value)}
         />
 
-        <ImageListContainer>
-          {showImageList && featuredimageList.map((image, i) => {
-            return (
-              <ImageListThumbnail
-                key={i}
-                onClick={e => selectFeaturedImage(image.urls.regular)}
-                src={image.urls.thumb}/>
-            );
-          })}
-        </ImageListContainer>
+        <ImageGrid
+          showImageList={showImageList}
+          featuredimageList={featuredimageList}
+          onSelectFeaturedImage={selectFeaturedImage} />
 
         {!showImageList && classFeaturedImage && (
           <FeaturedImageContainer>
@@ -170,16 +165,4 @@ const FeaturedImageContainer = styled.div`
 const FeaturedImage = styled.img`
   width: 250px;
   height: auto;
-`
-const ImageListContainer = styled.div`
-  display: flex;
-  flex-flow: row wrap;
-  width: 100%;
-`
-const ImageListThumbnail = styled.img`
-  flex: auto;
-  height: 250px;
-  min-width: 150px;
-  margin: 8px 8px 8px 0;
-  cursor: pointer;
 `
