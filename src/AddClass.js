@@ -1,16 +1,20 @@
 import React, { useState } from 'react';
 import styled from 'styled-components'
+import Unsplash from 'unsplash-js';
 
 const AddClass = ({content, onSubmit}) => {
 
   const [classId, setClassId] = useState(Math.ceil(Math.random() * 1000));
-  const [classTitle, setClassTitle] = useState('Henry');
-  const [classIns, setClassIns] = useState('asdf instructor name');
-  const [classDesc, setClassDesc] = useState('asdfasdd');
+  const [classTitle, setClassTitle] = useState('');
+  const [classIns, setClassIns] = useState('');
+  const [classDesc, setClassDesc] = useState('');
   const [classDur, setClassDur] = useState(0);
-  const [classFeaturedImage, setClassFeaturedImage] = useState('asdf');
+  const [classFeaturedImage, setClassFeaturedImage] = useState('');
   const [classType, setClassType] = useState('on-demand');
+  const [featuredimageList, setFeaturedImageList] = useState([]);
+  const [showImageList, setShowImageList] = useState(false);
 
+  const unsplash = new Unsplash({ accessKey: "acd2360674987d49441122b54bd1e005c167b01c68e1dccae5da54d6ab174725" });
   
   const handleSubmit = (event, props) => {
     event.preventDefault();
@@ -23,6 +27,20 @@ const AddClass = ({content, onSubmit}) => {
       featuredImage: classFeaturedImage,
       type: classType
     });
+  }
+
+  const featuredImageSearch = (term) => {
+    unsplash.search.photos(term, 1, 10, { orientation: "portrait" })
+    .then(res => res.json())
+    .then(json => {
+      setFeaturedImageList(json.results);
+      setShowImageList(true);
+    });
+  }
+
+  const selectFeaturedImage = (urls) => {
+    setClassFeaturedImage(urls);
+    setShowImageList(false);
   }
 
   return (
@@ -63,10 +81,20 @@ const AddClass = ({content, onSubmit}) => {
         <FormFieldWrapper
           type="text"
           placeholder="Please enter image URL"
-          value={classFeaturedImage}
           required
-          onChange={e => setClassFeaturedImage(e.target.value)}
+          onChange={e => featuredImageSearch(e.target.value)}
         />
+
+        {showImageList && featuredimageList.map((image, i) => {
+          return <img onClick={e => selectFeaturedImage(image.urls.regular)} src={image.urls.thumb}/>;
+        })}
+
+        {!showImageList && classFeaturedImage && (
+          <FeaturedImageContainer>
+            <FeaturedImage src={classFeaturedImage} />
+          </FeaturedImageContainer>
+        )}
+
         <Formlabel>Class Type:</Formlabel>
         <FormSelect
           placeholder="Please select "
@@ -86,11 +114,8 @@ export default AddClass
 
 const FormWrapper = styled.div`
   display: flex;
-  justify-content: stretch;
   flex-wrap: wrap;
-  max-width: 991px;
-  margin: auto;
-  padding: 25px;
+  justify-content: stretch;
 `
 const Formlabel = styled.label`
   padding-top: 15px;
@@ -100,15 +125,30 @@ const FormFieldWrapper = styled.input`
 `
 
 const FormSubmit = styled.input`
-  margin-top: 15px;
+  background: black;
+  color: white;
+  font-size: 25px;
+  font-weight: bold;
+  margin: 25px 0;
+  padding: 10px;
   width: 100%;
-  padding: 25px;
 `
 
 const FormTextArea = styled.textarea`
   width: 100%;
+  min-width: 100%;
   min-height: 100px;
 `
 const FormSelect = styled.select`
   width: 100%;
+`
+
+const FeaturedImageContainer = styled.div`
+  padding: 15px;
+  width: 100%;
+`
+
+const FeaturedImage = styled.img`
+  width: 250px;
+  height: auto;
 `

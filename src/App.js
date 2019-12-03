@@ -19,8 +19,7 @@ const App = () => {
       <CardsWrapper>
         {classes.map((klass, i) => <ClassCard key={i} content={klass}/>)}
       </CardsWrapper>
-      <AddClass
-        onSubmit={newClass => setClasses([...classes, newClass]) }/>
+      <AddClass onSubmit={newClass => setClasses([...classes, newClass]) }/>
     </Wrapper>
   )
 }
@@ -43,6 +42,8 @@ const ClassCard = ({content}) => (
 const Wrapper = styled.div `
   margin-top: 45px;
   text-align: center;
+  max-width: 991px;
+  margin: auto;
 `
 
 const ClassCardWrapper = styled.div`
@@ -56,8 +57,6 @@ const ClassCardWrapper = styled.div`
 `
 
 const CardsWrapper = styled.div`
-  margin: auto;
-  max-width: 991px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
