@@ -93,9 +93,13 @@ const AddClass = ({onSubmit, onCloseModal}) => {
         <ImageGrid
           showImageList={showImageList}
           featuredimageList={featuredimageList}
-          onSelectFeaturedImage={selectFeaturedImage} />
+          onSelectFeaturedImage={selectFeaturedImage}
+        />
         
-        <ImageSelected showImageList={showImageList} classFeaturedImage={classFeaturedImage} />
+        <ImageSelected
+          showImageList={showImageList}
+          classFeaturedImage={classFeaturedImage}
+        />
 
         <Formlabel>Class Type:</Formlabel>
         <FormSelect
