@@ -8,6 +8,7 @@ import { processImageKey, truncateDesc } from './utils'
 const App = () => {
   const [classes, setClasses] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
+
   useEffect(() => {
     setClasses(classList)
   }, [])
@@ -34,12 +35,12 @@ const App = () => {
       )}
       <CardsWrapper>
         {classes.map((klass, i) => (
-            <ClassCard
-              key={i}
-              content={klass}
-              onDelete={deleteClass.bind(this, klass.id)}
-            />
-          )
+          <ClassCard
+            key={i}
+            content={klass}
+            onDelete={deleteClass.bind(this, klass.id)}
+          />
+        )
         )}
       </CardsWrapper>
     </Wrapper>
