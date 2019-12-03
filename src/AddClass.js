@@ -63,6 +63,7 @@ const AddClass = ({content, onSubmit}) => {
         />
         <Formlabel>Description:</Formlabel>
         <FormTextArea
+          maxlength="100"
           type="text"
           placeholder="Please enter class description"
           value={classDesc}

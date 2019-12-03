@@ -10,3 +10,11 @@ export const processImageKey = (content) => {
   });
   return imageUrl;
 }
+
+
+export const truncateDesc = (desc) => {
+  if (desc.length > 100) {
+    return desc.substring(0, 100) + '....';
+  }
+  return desc;
+}

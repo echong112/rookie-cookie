@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import classList from './classes'
 import NavBar from './NavBar'
 import AddClass from './AddClass'
-import { processImageKey } from './utils'
+import { processImageKey, truncateDesc } from './utils'
 
 const App = () => {
   const [classes, setClasses] = useState([])
@@ -34,8 +34,8 @@ const ClassCard = ({content}) => (
     />
     <h4>{content.title}</h4>
     <h5>{content.instructor}</h5>
-    <h5>{content.description}</h5>
-    <h5>{content.duration} min</h5>
+    <h5>{truncateDesc(content.description)}</h5>
+    <ClassCardDuration>{content.duration} min</ClassCardDuration>
   </ClassCardWrapper>
 )
 
@@ -47,18 +47,25 @@ const Wrapper = styled.div `
 `
 
 const ClassCardWrapper = styled.div`
-  height: 380px;
+  height: 480px;
   width: 175px;
   border-radius: 5px;
   border: solid 1px black;
   overflow: hidden;
   flex-basis: 19%;
   margin: .25%;
+  position: relative;
 `
 const ClassCardImage = styled.div`
   width: 100%;
   height: 50%;
   background-size: cover;
+`
+
+const ClassCardDuration = styled.h5`
+  width: 100%;
+  position: absolute;
+  bottom: 5px;
 `
 
 
