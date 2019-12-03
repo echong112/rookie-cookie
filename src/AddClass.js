@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components'
 import Unsplash from 'unsplash-js';
 import ImageGrid from './ImageGrid';
+import ImageSelected from './ImageSelected';
 
 const AddClass = ({onSubmit, onCloseModal}) => {
   // eslint-disable-next-line
@@ -93,12 +94,8 @@ const AddClass = ({onSubmit, onCloseModal}) => {
           showImageList={showImageList}
           featuredimageList={featuredimageList}
           onSelectFeaturedImage={selectFeaturedImage} />
-
-        {!showImageList && classFeaturedImage && (
-          <FeaturedImageContainer>
-            <FeaturedImage src={classFeaturedImage} />
-          </FeaturedImageContainer>
-        )}
+        
+        <ImageSelected showImageList={showImageList} classFeaturedImage={classFeaturedImage} />
 
         <Formlabel>Class Type:</Formlabel>
         <FormSelect
@@ -156,13 +153,4 @@ const FormTextArea = styled.textarea`
 `
 const FormSelect = styled.select`
   width: 100%;
-`
-
-const FeaturedImageContainer = styled.div`
-  padding: 15px;
-  width: 100%;
-`
-const FeaturedImage = styled.img`
-  width: 250px;
-  height: auto;
 `

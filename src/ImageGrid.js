@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components'
-import { processImageKey, truncateDesc } from './utils'
 
 const ImageGrid = ({showImageList, featuredimageList, onSelectFeaturedImage}) => {
   const selectFeaturedImage = (url) => {
