@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import styled from 'styled-components'
 import Unsplash from 'unsplash-js';
 
-const AddClass = ({content, onSubmit, onCloseModal}) => {
-
+const AddClass = ({onSubmit, onCloseModal}) => {
+  // eslint-disable-next-line
   const [classId, setClassId] = useState(Math.ceil(Math.random() * 1000));
   const [classTitle, setClassTitle] = useState('');
   const [classIns, setClassIns] = useState('');
@@ -16,7 +16,7 @@ const AddClass = ({content, onSubmit, onCloseModal}) => {
 
   const unsplash = new Unsplash({ accessKey: "acd2360674987d49441122b54bd1e005c167b01c68e1dccae5da54d6ab174725" });
   
-  const handleSubmit = (event, props) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
     onSubmit({
       id: classId,
@@ -80,17 +80,22 @@ const AddClass = ({content, onSubmit, onCloseModal}) => {
           required
           onChange={e => setClassDur(e.target.value)}
         />
-        <Formlabel>Featured Image:</Formlabel>
+        <Formlabel>Search and Select Image:</Formlabel>
         <FormFieldWrapper
           type="text"
-          placeholder="Please enter image URL"
+          placeholder="Start Typing...."
           required
           onChange={e => featuredImageSearch(e.target.value)}
         />
 
         <ImageListContainer>
           {showImageList && featuredimageList.map((image, i) => {
-            return <ImageListThumbnail key={i} onClick={e => selectFeaturedImage(image.urls.regular)} src={image.urls.thumb}/>;
+            return (
+              <ImageListThumbnail
+                key={i}
+                onClick={e => selectFeaturedImage(image.urls.regular)}
+                src={image.urls.thumb}/>
+            );
           })}
         </ImageListContainer>
 
@@ -181,4 +186,5 @@ const ImageListThumbnail = styled.img`
   height: 250px;
   min-width: 150px;
   margin: 8px 8px 8px 0;
+  cursor: pointer;
 `
