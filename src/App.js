@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components'
 import classList from './classes'
 import NavBar from './NavBar'
+import AddClass from './AddClass'
+import { processImageKey } from './utils'
 
 const App = () => {
   const [classes, setClasses] = useState([])
@@ -15,31 +17,15 @@ const App = () => {
       <NavBar />
       <h1>Welcome to RookieCookie!</h1>
       <CardsWrapper>
-        {classes.map((klass, i) => <ClassCard key={i}content={klass}/>)}
+        {classes.map((klass, i) => <ClassCard key={i} content={klass}/>)}
       </CardsWrapper>
+      <AddClass
+        onSubmit={newClass => setClasses([...classes, newClass]) }/>
     </Wrapper>
   )
 }
 
 export default App
-
-// NOTE: Obviously, the easy / cheat answer is to update the classes.js
-// Assuming the data object has something that has something
-// along the lines of 'featuredImage' or 'featureImage', it will parse the keys and find
-// the correct object param to populate the imageUrl
-
-const processImageKey = (content) => {
-  let keys = Object.keys(content);
-  let imageUrl = '';
-  keys.forEach((key, i) => {
-    let featureRegEx = /^featureImage/;
-    let featuredRegEx = /^featuredImage/;
-    if (featureRegEx.test(key) || featuredRegEx.test(key)) {
-      imageUrl = content[key];
-    }
-  });
-  return imageUrl;
-}
 
 const ClassCard = ({content}) => (
   <ClassCardWrapper>
@@ -59,19 +45,19 @@ const Wrapper = styled.div `
   text-align: center;
 `
 
-const CardsWrapper = styled.div `
-  margin-top: 45px;
-  text-align: center;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-`
-
 const ClassCardWrapper = styled.div`
+  margin-top: 45px;
   height: 380px;
   width: 175px;
   border-radius: 5px;
   border: solid 1px black;
   overflow: hidden;
-  margin-bottom: 15px;
+`
+
+const CardsWrapper = styled.div`
+  max-width: 991px;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 `
