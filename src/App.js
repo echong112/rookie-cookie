@@ -53,8 +53,8 @@ const ClassCard = ({index, content, onDelete, onCancel}) => {
   const [currClass, setCurrClass] = useState(content);
 
   const cancelClass = () => {
-    let tempClass = Object.assign({}, content);
-    tempClass.isCancelled = true;
+    let tempClass = Object.assign({}, currClass);
+    tempClass.isCancelled = !tempClass.isCancelled;
     setCurrClass(tempClass);
   }
 
@@ -73,7 +73,7 @@ const ClassCard = ({index, content, onDelete, onCancel}) => {
       <ClassCardDuration>{currClass.duration} min</ClassCardDuration>
       <ClassButtonContainer>
         <button onClick={onDelete}>Delete</button>
-        <button onClick={cancelClass}>Cancel</button>
+        <button onClick={cancelClass}>{currClass.isCancelled ? 'Activate' : 'Cancel'}</button>
       </ClassButtonContainer>
     </ClassCardWrapper>
   )
