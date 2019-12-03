@@ -17,7 +17,9 @@ const App = () => {
       <NavBar />
       <h1>Welcome to RookieCookie!</h1>
       <CardsWrapper>
-        {classes.map((klass, i) => <ClassCard key={i} content={klass}/>)}
+        {classes.map((klass, i) => {
+          return <ClassCard key={i} index={i} content={klass}/>
+        })}
       </CardsWrapper>
       <AddClass onSubmit={newClass => setClasses([...classes, newClass]) }/>
     </Wrapper>
@@ -26,16 +28,20 @@ const App = () => {
 
 export default App
 
-const ClassCard = ({content}) => (
+const ClassCard = ({index, content}) => (
   <ClassCardWrapper>
     <ClassCardImage
-    style ={ { backgroundImage: "url("+processImageKey(content)+")" } }
+      style ={ { backgroundImage: `url(${processImageKey(content)})` } }
       src={processImageKey(content)}
     />
     <h4>{content.title}</h4>
     <h5>{content.instructor}</h5>
     <h5>{truncateDesc(content.description)}</h5>
     <ClassCardDuration>{content.duration} min</ClassCardDuration>
+    <ClassButtonContainer>
+      <button>Cancel</button>
+      <button>Delete</button>
+    </ClassButtonContainer>
   </ClassCardWrapper>
 )
 
@@ -65,13 +71,18 @@ const ClassCardImage = styled.div`
 const ClassCardDuration = styled.h5`
   width: 100%;
   position: absolute;
-  bottom: 5px;
+  bottom: 15px;
 `
-
 
 const CardsWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-content: flex-start;
+`
+
+const ClassButtonContainer = styled.div`
+  position: absolute;
+  width: 100%;
+  bottom: 10px;
 `
