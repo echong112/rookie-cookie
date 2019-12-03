@@ -25,11 +25,14 @@ const App = () => {
       {isModalOpen && (
       <div>
         <button onClick={() => setIsModalOpen(!isModalOpen)}>Cancel</button>
-        <AddClass onSubmit={
-          newClass => {
-            setClasses([...classes, newClass]);
-            setIsModalOpen(false);
-          }}/>
+        <AddClass
+          onCloseModal={() => setIsModalOpen(false)} 
+          onSubmit={
+            newClass => {
+              setClasses([...classes, newClass]);
+              setIsModalOpen(false);
+            }}
+          />
       </div>
 
       )}

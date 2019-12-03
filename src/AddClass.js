@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components'
 import Unsplash from 'unsplash-js';
 
-const AddClass = ({content, onSubmit}) => {
+const AddClass = ({content, onSubmit, onCloseModal}) => {
 
   const [classId, setClassId] = useState(Math.ceil(Math.random() * 1000));
   const [classTitle, setClassTitle] = useState('');
@@ -46,6 +46,7 @@ const AddClass = ({content, onSubmit}) => {
   return (
     <NewClassForm onSubmit={handleSubmit}>
       <h1>Add a new Class</h1>
+      <button onClick={onCloseModal}>Cancel</button>
       <FormWrapper>
         <Formlabel>Title:</Formlabel>
         <FormFieldWrapper
