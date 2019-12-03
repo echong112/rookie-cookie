@@ -6,7 +6,8 @@ import AddClass from './AddClass'
 import { processImageKey, truncateDesc } from './utils'
 
 const App = () => {
-  const [classes, setClasses] = useState([])
+  const [classes, setClasses] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   useEffect(() => {
     setClasses(classList)
   }, [])
@@ -15,26 +16,32 @@ const App = () => {
     setClasses(classes.filter(curClass => curClass.id !== id));
   }
 
-  const cancelClass = (id) => {
-    console.log(id);
-  }
-
   return (
     <Wrapper>
       <NavBar />
       <h1>Welcome to RookieCookie!</h1>
+      <button onClick={() => setIsModalOpen(!isModalOpen)}>Add Class</button>
+      {isModalOpen && (
+      <div>
+        <button onClick={() => setIsModalOpen(!isModalOpen)}>Cancel</button>
+        <AddClass onSubmit={
+          newClass => {
+            setClasses([...classes, newClass]);
+            setIsModalOpen(false);
+          }}/>
+      </div>
+
+      )}
       <CardsWrapper>
         {classes.map((klass, i) => (
             <ClassCard
               key={i}
               content={klass}
-              onCancel={cancelClass.bind(this, klass.id)}
               onDelete={deleteClass.bind(this, klass.id)}
             />
           )
         )}
       </CardsWrapper>
-      <AddClass onSubmit={newClass => setClasses([...classes, newClass]) }/>
     </Wrapper>
   )
 }
