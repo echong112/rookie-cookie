@@ -28,9 +28,9 @@ export default App
 
 const ClassCard = ({content}) => (
   <ClassCardWrapper>
-    <img width="100%"
+    <ClassCardImage
+    style ={ { backgroundImage: "url("+processImageKey(content)+")" } }
       src={processImageKey(content)}
-      alt=''
     />
     <h4>{content.title}</h4>
     <h5>{content.instructor}</h5>
@@ -40,10 +40,10 @@ const ClassCard = ({content}) => (
 )
 
 const Wrapper = styled.div `
-  margin-top: 45px;
   text-align: center;
   max-width: 991px;
   margin: auto;
+  margin-top: 45px;
 `
 
 const ClassCardWrapper = styled.div`
@@ -55,6 +55,12 @@ const ClassCardWrapper = styled.div`
   flex-basis: 19%;
   margin: .25%;
 `
+const ClassCardImage = styled.div`
+  width: 100%;
+  height: 50%;
+  background-size: cover;
+`
+
 
 const CardsWrapper = styled.div`
   display: flex;

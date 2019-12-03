@@ -85,9 +85,11 @@ const AddClass = ({content, onSubmit}) => {
           onChange={e => featuredImageSearch(e.target.value)}
         />
 
-        {showImageList && featuredimageList.map((image, i) => {
-          return <img onClick={e => selectFeaturedImage(image.urls.regular)} src={image.urls.thumb}/>;
-        })}
+        <ImageListContainer>
+          {showImageList && featuredimageList.map((image, i) => {
+            return <ImageListThumbnail onClick={e => selectFeaturedImage(image.urls.regular)} src={image.urls.thumb}/>;
+          })}
+        </ImageListContainer>
 
         {!showImageList && classFeaturedImage && (
           <FeaturedImageContainer>
@@ -151,4 +153,17 @@ const FeaturedImageContainer = styled.div`
 const FeaturedImage = styled.img`
   width: 250px;
   height: auto;
+`
+
+const ImageListContainer = styled.div`
+  display: flex;
+  flex-flow: row wrap;
+  width: 100%;
+`
+
+const ImageListThumbnail = styled.img`
+  flex: auto;
+  height: 250px;
+  min-width: 150px;
+  margin: 8px 8px 8px 0;
 `
