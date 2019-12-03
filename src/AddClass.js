@@ -28,14 +28,14 @@ const AddClass = ({content, onSubmit}) => {
   return (
     <form onSubmit={handleSubmit}>
       <FormWrapper>
-        <label>Title:</label>
+        <Formlabel>Title:</Formlabel>
         <FormFieldWrapper
           type="text"
           value={classTitle}
           required
           onChange={e => setClassTitle(e.target.value)}
         />
-        <label>Instructor:</label>
+        <Formlabel>Instructor:</Formlabel>
         <FormFieldWrapper
           type="text"
           placeholder="e.g. (Gordon Ramsey, Ratatouille, Julia Child)"
@@ -43,7 +43,7 @@ const AddClass = ({content, onSubmit}) => {
           required
           onChange={e => setClassIns(e.target.value)}
         />
-        <label>Description:</label>
+        <Formlabel>Description:</Formlabel>
         <FormTextArea
           type="text"
           placeholder="Please enter class description"
@@ -51,7 +51,7 @@ const AddClass = ({content, onSubmit}) => {
           required
           onChange={e => setClassDesc(e.target.value)}
         />
-        <label>Duration:</label>
+        <Formlabel>Duration:</Formlabel>
         <FormFieldWrapper
           type="number"
           placeholder="Please enter duration in hours"
@@ -59,7 +59,7 @@ const AddClass = ({content, onSubmit}) => {
           required
           onChange={e => setClassDur(e.target.value)}
         />
-        <label>Featured Image:</label>
+        <Formlabel>Featured Image:</Formlabel>
         <FormFieldWrapper
           type="text"
           placeholder="Please enter image URL"
@@ -67,7 +67,7 @@ const AddClass = ({content, onSubmit}) => {
           required
           onChange={e => setClassFeaturedImage(e.target.value)}
         />
-        <label>Class Type:</label>
+        <Formlabel>Class Type:</Formlabel>
         <FormSelect
           placeholder="Please select "
           value={classType}
@@ -76,24 +76,33 @@ const AddClass = ({content, onSubmit}) => {
           <option value="on-demand">On Demand</option>
           <option value="live">Live</option>
         </FormSelect>
-        <FormFieldWrapper type="submit" value="Add" />
+        <FormSubmit type="submit" value="Add" />
       </FormWrapper>
     </form>
   )
 }
 
-
 export default AddClass
+
 const FormWrapper = styled.div`
   display: flex;
   justify-content: stretch;
   flex-wrap: wrap;
   max-width: 991px;
   margin: auto;
+  padding: 25px;
 `
-
+const Formlabel = styled.label`
+  padding-top: 15px;
+`
 const FormFieldWrapper = styled.input`
   width: 100%;
+`
+
+const FormSubmit = styled.input`
+  margin-top: 15px;
+  width: 100%;
+  padding: 25px;
 `
 
 const FormTextArea = styled.textarea`
@@ -101,4 +110,5 @@ const FormTextArea = styled.textarea`
   min-height: 100px;
 `
 const FormSelect = styled.select`
+  width: 100%;
 `

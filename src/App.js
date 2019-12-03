@@ -46,18 +46,20 @@ const Wrapper = styled.div `
 `
 
 const ClassCardWrapper = styled.div`
-  margin-top: 45px;
   height: 380px;
   width: 175px;
   border-radius: 5px;
   border: solid 1px black;
   overflow: hidden;
+  flex-basis: 19%;
+  margin: .25%;
 `
 
 const CardsWrapper = styled.div`
-  max-width: 991px;
   margin: auto;
+  max-width: 991px;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: center;
+  align-content: flex-start;
 `
