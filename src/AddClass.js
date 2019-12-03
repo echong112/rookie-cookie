@@ -90,7 +90,7 @@ const AddClass = ({content, onSubmit, onCloseModal}) => {
 
         <ImageListContainer>
           {showImageList && featuredimageList.map((image, i) => {
-            return <ImageListThumbnail onClick={e => selectFeaturedImage(image.urls.regular)} src={image.urls.thumb}/>;
+            return <ImageListThumbnail key={i} onClick={e => selectFeaturedImage(image.urls.regular)} src={image.urls.thumb}/>;
           })}
         </ImageListContainer>
 
