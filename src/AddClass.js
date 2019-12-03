@@ -139,13 +139,12 @@ const FormWrapper = styled.div`
   flex-wrap: wrap;
   justify-content: stretch;
 `
-const Formlabel = styled.label`
-  padding-top: 15px;
-`
 const FormFieldWrapper = styled.input`
   width: 100%;
 `
-
+const Formlabel = styled.label`
+  padding-top: 15px;
+`
 const FormSubmit = styled.input`
   background: black;
   color: white;
@@ -155,7 +154,6 @@ const FormSubmit = styled.input`
   padding: 10px;
   width: 100%;
 `
-
 const FormTextArea = styled.textarea`
   width: 100%;
   min-width: 100%;
@@ -169,18 +167,15 @@ const FeaturedImageContainer = styled.div`
   padding: 15px;
   width: 100%;
 `
-
 const FeaturedImage = styled.img`
   width: 250px;
   height: auto;
 `
-
 const ImageListContainer = styled.div`
   display: flex;
   flex-flow: row wrap;
   width: 100%;
 `
-
 const ImageListThumbnail = styled.img`
   flex: auto;
   height: 250px;
