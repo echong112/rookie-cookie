@@ -14,7 +14,9 @@ const App = () => {
   }, [])
 
   const deleteClass = (id) => {
-    setClasses(classes.filter(curClass => curClass.id !== id));
+    if (window.confirm("Delete Class?")) {
+      setClasses(classes.filter(curClass => curClass.id !== id));
+    }
   }
 
   const handleSubmit = (newClass) => {

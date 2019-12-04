@@ -11,8 +11,12 @@ const ClassCard = ({content, onDelete}) => {
 
   const cancelClass = () => {
     let tempClass = Object.assign({}, currClass);
-    tempClass.isCancelled = !tempClass.isCancelled;
-    setCurrClass(tempClass);
+    let message = tempClass.isCancelled ? 'Activate Class?' : 'Cancel Class?';
+
+    if (window.confirm(message)) {
+      tempClass.isCancelled = !tempClass.isCancelled;
+      setCurrClass(tempClass);
+    }
   }
 
   return (
