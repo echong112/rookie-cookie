@@ -17,6 +17,11 @@ const App = () => {
     setClasses(classes.filter(curClass => curClass.id !== id));
   }
 
+  const handleSubmit = (newClass) => {
+    setClasses([...classes, newClass]);
+    setIsModalOpen(false);
+  }
+
   return (
     <Wrapper>
       <NavBar />
@@ -27,11 +32,7 @@ const App = () => {
           <button onClick={() => setIsModalOpen(!isModalOpen)}>Cancel</button>
           <AddClass
             onCloseModal={() => setIsModalOpen(false)} 
-            onSubmit={
-              newClass => {
-                setClasses([...classes, newClass]);
-                setIsModalOpen(false);
-              }}
+            onSubmit={handleSubmit}
             />
         </div>
       )}

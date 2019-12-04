@@ -3,33 +3,23 @@ import styled from 'styled-components'
 import { processImageKey, truncateDesc } from './utils'
 
 const ClassCard = ({content, onDelete}) => {
-  const [currClass, setCurrClass] = useState(content);
-
-  const cancelClass = () => {
-    let tempClass = Object.assign({}, currClass);
-    tempClass.isCancelled = !tempClass.isCancelled;
-    setCurrClass(tempClass);
-  }
-
   return (
     <ClassCardWrapper>
       <ClassCardImage
-        style ={ { backgroundImage: `url(${processImageKey(currClass)})` } }
-        src={processImageKey(currClass)}
+        style={{ backgroundImage: `url(${processImageKey(content)})` }}
+        src={processImageKey(content)}
       />
-      {currClass.isCancelled && (
-        <CancelledBadge>Cancelled</CancelledBadge>
-      )}
-      <h4>{currClass.title}</h4>
-      <h5>{currClass.instructor}</h5>
-      <h5>{truncateDesc(currClass.description)}</h5>
-      <ClassCardDuration>{currClass.duration} min</ClassCardDuration>
+      <h4>{content.title}</h4>
+      <h5>{content.instructor}</h5>
+      <h5>{truncateDesc(content.description)}</h5>
+
+      <ClassCardDuration>{content.duration} min</ClassCardDuration>
       <ClassButtonContainer>
-        <button name="delete" onClick={() => onDelete}>Delete</button>
-        <button name="cancel" onClick={cancelClass}>{currClass.isCancelled ? 'Activate' : 'Cancel'}</button>
+      <button onClick={onDelete}>Delete</button>
+      <button>{content.isCancelled ? "Activate" : "Cancel"}</button>
       </ClassButtonContainer>
     </ClassCardWrapper>
-  )
+    );
 }
 export default ClassCard
 
