@@ -106,7 +106,7 @@ const AddClass = ({onSubmit, onCloseModal}) => {
               classFeaturedImage={classFeaturedImage}
             />
             {classFeaturedImage.length > 0 && (
-              <button onClick={removeSelectedImage}>X</button>
+              <CloseButton onClick={removeSelectedImage}>X</CloseButton>
             )}
           </SelectedImageContainer>
           <Formlabel>Class Type:</Formlabel>
