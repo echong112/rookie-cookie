@@ -15,7 +15,9 @@ const App = () => {
 
   const deleteClass = (id) => {
     if (window.confirm("Delete Class?")) {
-      setClasses(classes.filter(curClass => curClass.id !== id));
+      let tempClasses = Object.assign([], [...classes]);
+      tempClasses.splice(id, 1);
+      setClasses(tempClasses);
     }
   }
 
@@ -43,7 +45,7 @@ const App = () => {
           <ClassCard
             key={i}
             content={klass}
-            onDelete={deleteClass.bind(this, klass.id)}
+            onDelete={deleteClass.bind(this, i)}
             />
           )
         )}

@@ -27,7 +27,7 @@ export default [
     classType: 'on-demand'
   },
   {
-    id: 4,
+    id: 3,
     title: "Comfort Foods with Ree",
     description: "Can't go wrong with Ree",
     instructor: "Ree Drummond",
