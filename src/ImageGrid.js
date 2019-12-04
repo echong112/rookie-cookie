@@ -7,14 +7,14 @@ const ImageGrid = ({showImageList, featuredimageList, onSelectFeaturedImage}) =>
   }
   return (
     <ImageListContainer>
-    {showImageList && featuredimageList.map((image, i) => {
-      return (
-        <ImageListThumbnail
-          key={i}
-          onClick={e => selectFeaturedImage(image.urls.regular)}
-          src={image.urls.thumb}/>
-      );
-    })}
+      {showImageList && featuredimageList.map((image, i) => {
+        return (
+          <ImageListThumbnail
+            key={i}
+            onClick={e => selectFeaturedImage(image.urls.regular)}
+            src={image.urls.thumb}/>
+        );
+      })}
   </ImageListContainer>
   )
 }

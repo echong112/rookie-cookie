@@ -25,8 +25,8 @@ const ClassCard = ({content, onDelete}) => {
       <h5>{truncateDesc(currClass.description)}</h5>
       <ClassCardDuration>{currClass.duration} min</ClassCardDuration>
       <ClassButtonContainer>
-        <button onClick={onDelete}>Delete</button>
-        <button onClick={cancelClass}>{currClass.isCancelled ? 'Activate' : 'Cancel'}</button>
+        <button name="delete" onClick={() => onDelete}>Delete</button>
+        <button name="cancel" onClick={cancelClass}>{currClass.isCancelled ? 'Activate' : 'Cancel'}</button>
       </ClassButtonContainer>
     </ClassCardWrapper>
   )
@@ -64,9 +64,11 @@ const ClassButtonContainer = styled.div`
 const CancelledBadge = styled.div`
   position: absolute;
   width: 99%;
-  top: 0;
+  top: 0%;
+  opacity: 0.65;
   left: 0;
   padding: 15px 0;
   font-weight: bold;
+  background: white;
   color: red;
 `

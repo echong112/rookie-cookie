@@ -89,18 +89,15 @@ const AddClass = ({onSubmit, onCloseModal}) => {
           required
           onChange={e => featuredImageSearch(e.target.value)}
         />
-
         <ImageGrid
           showImageList={showImageList}
           featuredimageList={featuredimageList}
           onSelectFeaturedImage={selectFeaturedImage}
         />
-        
         <ImageSelected
           showImageList={showImageList}
           classFeaturedImage={classFeaturedImage}
         />
-
         <Formlabel>Class Type:</Formlabel>
         <FormSelect
           placeholder="Please select "
@@ -127,7 +124,6 @@ const NewClassForm = styled.form`
   z-index: 99999;
   background: white;
 `
-
 const FormWrapper = styled.div`
   max-width: 991px;
   margin: auto;
@@ -141,15 +137,6 @@ const FormFieldWrapper = styled.input`
 const Formlabel = styled.label`
   padding-top: 15px;
 `
-const FormSubmit = styled.input`
-  background: black;
-  color: white;
-  font-size: 25px;
-  font-weight: bold;
-  margin: 25px 0;
-  padding: 10px;
-  width: 100%;
-`
 const FormTextArea = styled.textarea`
   width: 100%;
   min-width: 100%;
@@ -157,4 +144,13 @@ const FormTextArea = styled.textarea`
 `
 const FormSelect = styled.select`
   width: 100%;
+`
+const FormSubmit = styled.input`
+background: black;
+color: white;
+font-size: 25px;
+font-weight: bold;
+margin: 25px 0;
+padding: 10px;
+width: 100%;
 `
