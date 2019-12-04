@@ -45,87 +45,113 @@ const AddClass = ({onSubmit, onCloseModal}) => {
     setShowImageList(false);
   }
 
+  const removeSelectedImage = (e) => {
+    e.preventDefault();
+    setClassFeaturedImage('');
+  }
+
   return (
-    <NewClassForm onSubmit={handleSubmit}>
-      <h1>Add a new Class</h1>
-      <button onClick={onCloseModal}>Cancel</button>
-      <FormWrapper>
-        <Formlabel>Title:</Formlabel>
-        <FormFieldWrapper
-          type="text"
-          value={classTitle}
-          required
-          onChange={e => setClassTitle(e.target.value)}
-        />
-        <Formlabel>Instructor:</Formlabel>
-        <FormFieldWrapper
-          type="text"
-          placeholder="e.g. (Gordon Ramsey, Ratatouille, Julia Child)"
-          value={classIns}
-          required
-          onChange={e => setClassIns(e.target.value)}
-        />
-        <Formlabel>Description:</Formlabel>
-        <FormTextArea
-          maxlength="100"
-          type="text"
-          placeholder="Please enter class description"
-          value={classDesc}
-          required
-          onChange={e => setClassDesc(e.target.value)}
-        />
-        <Formlabel>Duration:</Formlabel>
-        <FormFieldWrapper
-          type="number"
-          placeholder="Please enter duration in hours"
-          value={classDur}
-          required
-          onChange={e => setClassDur(e.target.value)}
-        />
-        <Formlabel>Search and Select Image:</Formlabel>
-        <FormFieldWrapper
-          type="text"
-          placeholder="Start Typing...."
-          required
-          onChange={e => featuredImageSearch(e.target.value)}
-        />
-        <ImageGrid
-          showImageList={showImageList}
-          featuredimageList={featuredimageList}
-          onSelectFeaturedImage={selectFeaturedImage}
-        />
-        <ImageSelected
-          showImageList={showImageList}
-          classFeaturedImage={classFeaturedImage}
-        />
-        <Formlabel>Class Type:</Formlabel>
-        <FormSelect
-          placeholder="Please select "
-          value={classType}
-          onChange={e => setClassType(e.target.value)}
-        >
-          <option value="on-demand">On Demand</option>
-          <option value="live">Live</option>
-        </FormSelect>
-        <FormSubmit type="submit" value="Add" />
-      </FormWrapper>
-    </NewClassForm>
+    <AddClassModal>
+      <NewClassForm onSubmit={handleSubmit}>
+        <h1>Add a new Class</h1>
+        <CloseButton onClick={onCloseModal.bind(this)}>X</CloseButton>
+        <FormWrapper>
+          <Formlabel>Title:</Formlabel>
+          <FormFieldWrapper
+            type="text"
+            value={classTitle}
+            required
+            onChange={e => setClassTitle(e.target.value)}
+          />
+          <Formlabel>Instructor:</Formlabel>
+          <FormFieldWrapper
+            type="text"
+            placeholder="e.g. (Gordon Ramsey, Ratatouille, Julia Child)"
+            value={classIns}
+            required
+            onChange={e => setClassIns(e.target.value)}
+          />
+          <Formlabel>Description:</Formlabel>
+          <FormTextArea
+            maxlength="100"
+            type="text"
+            placeholder="Please enter class description"
+            value={classDesc}
+            required
+            onChange={e => setClassDesc(e.target.value)}
+          />
+          <Formlabel>Duration:</Formlabel>
+          <FormFieldWrapper
+            type="number"
+            placeholder="Please enter duration in hours"
+            value={classDur}
+            required
+            onChange={e => setClassDur(e.target.value)}
+          />
+          <Formlabel>Search and Select Image:</Formlabel>
+          <FormFieldWrapper
+            type="text"
+            placeholder="Start Typing...."
+            required
+            onChange={e => featuredImageSearch(e.target.value)}
+          />
+          <ImageGrid
+            showImageList={showImageList}
+            featuredimageList={featuredimageList}
+            onSelectFeaturedImage={selectFeaturedImage}
+          />
+          <div>
+            <ImageSelected
+              showImageList={showImageList}
+              classFeaturedImage={classFeaturedImage}
+            />
+            {classFeaturedImage.length > 0 && (
+              <button onClick={removeSelectedImage}>X</button>
+            )}
+          </div>
+          <Formlabel>Class Type:</Formlabel>
+          <FormSelect
+            placeholder="Please select "
+            value={classType}
+            onChange={e => setClassType(e.target.value)}
+          >
+            <option value="on-demand">On Demand</option>
+            <option value="live">Live</option>
+          </FormSelect>
+          <FormSubmit type="submit" value="Add" />
+        </FormWrapper>
+      </NewClassForm>
+    </AddClassModal>
   )
 }
 
 export default AddClass
-
-const NewClassForm = styled.form`
+const AddClassModal = styled.div`
   position: fixed;
   width: 100%;
+  height: 100%;
   top: 0;
   left: 0;
-  height: 100vh;
+  height: 100%;
   z-index: 99999;
+`
+
+const NewClassForm = styled.form`
+  border: black 4px solid;
+  border-radius: 5px;
+  max-width: 991px;
+  width: 50%;
+  height: 100%;
+  max-height: 600px;
+  margin: auto;
   background: white;
+  padding: 25px;
+  margin-top: 50px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  position: relative;
 `
 const FormWrapper = styled.div`
-  max-width: 991px;
   margin: auto;
   display: flex;
   flex-wrap: wrap;
@@ -154,3 +180,10 @@ margin: 25px 0;
 padding: 10px;
 width: 100%;
 `
+
+const CloseButton = styled.button`
+  position: absolute;
+  top: 10px;
+  right: 10px;
+`
+
