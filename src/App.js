@@ -15,7 +15,7 @@ const App = () => {
 
   const deleteClass = (id) => {
     if (window.confirm("Delete Class?")) {
-      let tempClasses = Object.assign([], [...classes]);
+      let tempClasses = [...classes];
       tempClasses.splice(id, 1);
       setClasses(tempClasses);
     }
