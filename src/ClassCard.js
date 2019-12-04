@@ -36,6 +36,7 @@ const ClassCard = ({content, onDelete}) => {
     </ClassCardWrapper>
     );
 }
+
 export default ClassCard
 
 const ClassCardWrapper = styled.div`

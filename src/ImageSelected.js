@@ -12,11 +12,11 @@ const ImageSelected = ({showImageList, classFeaturedImage}) => {
     </ImageSelectedContainer>
   )
 }
+
 export default ImageSelected
 
 const ImageSelectedContainer = styled.div`
   width: 100%;
-
 `
 const FeaturedImageContainer = styled.div`
   padding: 15px;
