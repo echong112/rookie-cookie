@@ -126,6 +126,7 @@ const AddClass = ({onSubmit, onCloseModal}) => {
 }
 
 export default AddClass
+
 const AddClassModal = styled.div`
   position: fixed;
   width: 100%;
@@ -141,8 +142,7 @@ const NewClassForm = styled.form`
   border-radius: 5px;
   max-width: 991px;
   width: 50%;
-  height: 100%;
-  max-height: 600px;
+  height: 80%;
   margin: auto;
   background: white;
   padding: 25px;
