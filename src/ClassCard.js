@@ -1,14 +1,29 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components'
 import { processImageKey, truncateDesc } from './utils'
 
 const ClassCard = ({content, onDelete}) => {
+  const [currClass, setCurrClass] = useState(content);
+
+  useEffect(() => {
+    setCurrClass(content);
+  }, [content]);
+
+  const cancelClass = () => {
+    let tempClass = Object.assign({}, currClass);
+    tempClass.isCancelled = !tempClass.isCancelled;
+    setCurrClass(tempClass);
+  }
+
   return (
     <ClassCardWrapper>
       <ClassCardImage
         style={{ backgroundImage: `url(${processImageKey(content)})` }}
         src={processImageKey(content)}
       />
+      {currClass.isCancelled && (
+        <CancelledBadge>Cancelled</CancelledBadge>
+      )}
       <h4>{content.title}</h4>
       <h5>{content.instructor}</h5>
       <h5>{truncateDesc(content.description)}</h5>
@@ -16,7 +31,7 @@ const ClassCard = ({content, onDelete}) => {
       <ClassCardDuration>{content.duration} min</ClassCardDuration>
       <ClassButtonContainer>
       <button onClick={onDelete}>Delete</button>
-      <button>{content.isCancelled ? "Activate" : "Cancel"}</button>
+      <button onClick={cancelClass}>{currClass.isCancelled ? 'Activate' : 'Cancel'}</button>
       </ClassButtonContainer>
     </ClassCardWrapper>
     );
@@ -54,11 +69,12 @@ const ClassButtonContainer = styled.div`
 const CancelledBadge = styled.div`
   position: absolute;
   width: 99%;
-  top: 0%;
+  top: 50%;
   opacity: 0.65;
   left: 0;
   padding: 15px 0;
+  font-size: 25px;
   font-weight: bold;
-  background: white;
+  transform: rotate(-35deg);
   color: red;
 `
