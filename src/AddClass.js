@@ -100,7 +100,7 @@ const AddClass = ({onSubmit, onCloseModal}) => {
             featuredimageList={featuredimageList}
             onSelectFeaturedImage={selectFeaturedImage}
           />
-          <div>
+          <SelectedImageContainer>
             <ImageSelected
               showImageList={showImageList}
               classFeaturedImage={classFeaturedImage}
@@ -108,7 +108,7 @@ const AddClass = ({onSubmit, onCloseModal}) => {
             {classFeaturedImage.length > 0 && (
               <button onClick={removeSelectedImage}>X</button>
             )}
-          </div>
+          </SelectedImageContainer>
           <Formlabel>Class Type:</Formlabel>
           <FormSelect
             placeholder="Please select "
@@ -135,6 +135,11 @@ const AddClassModal = styled.div`
   left: 0;
   height: 100%;
   z-index: 99999;
+`
+const SelectedImageContainer = styled.div`
+  padding: 15px;
+  width: 100%;
+  position: relative;
 `
 
 const NewClassForm = styled.form`
